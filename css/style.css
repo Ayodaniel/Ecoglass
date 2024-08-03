@@ -12722,6 +12722,7 @@ html.tablet .ui-to-top {
 	background-color: transparent;
 	border: none;
 	display: none;
+	margin-right: auto;
 }
 
 .rd-navbar-toggle span {
@@ -12737,6 +12738,7 @@ html.tablet .ui-to-top {
 	left: 0;
 	top: -10px;
 	transition: .3s all ease;
+	
 }
 
 .rd-navbar-toggle span:after {
