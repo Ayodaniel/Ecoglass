@@ -237,6 +237,9 @@
   /**
    * Init Clients swiper sliders
    */
+   
+   
+   
   function initClientsSwiper() {
     document.querySelectorAll('.clients-swiper').forEach(function(swiper) {
       let config = JSON.parse(swiper.querySelector('.swiper-config').innerHTML.trim());

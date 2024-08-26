@@ -1,15 +1,16 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+// Load Composer's autoloader
+require 'vendor/autoload.php';
 
-if (isset($_POST['submit'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
+    $subject = $_POST['subject'];
     $message = $_POST['message'];
 
     $mail = new PHPMailer(true);
@@ -17,16 +18,16 @@ if (isset($_POST['submit'])) {
     try {
         // Server settings
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com'; // Set your SMTP server address here
+        $mail->Host = 'smtp.hostinger.com'; // Set your SMTP server address here
         $mail->SMTPAuth = true;
-        $mail->Username = 'lanredaniel377@gmail.com'; // SMTP username
-        $mail->Password = 'rpudjfytfuynvyhd'; // SMTP password
+        $mail->Username = 'info@ecoglassng.com'; // SMTP username
+        $mail->Password = 'Ecoglass@info2024'; // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
         // Recipients
-        $mail->setFrom($email, $name);
-        $mail->addAddress('lanredaniel377@gmail.com', 'Daniel'); // Add a recipient
+        $mail->setFrom('info@ecoglassng.com', 'Ecoglass'); // Set the 'from' address
+        $mail->addAddress('info@ecoglassng.com', 'Ecoglass'); // Add a recipient
 
         // Content
         $mail->isHTML(true);
@@ -35,14 +36,14 @@ if (isset($_POST['submit'])) {
                        <p><strong>Name:</strong> {$name}</p>
                        <p><strong>Email:</strong> {$email}</p>
                        <p><strong>Phone:</strong> {$phone}</p>
+                       <p><strong>Subject:</strong> {$subject}</p>
                        <p><strong>Message:</strong><br>{$message}</p>";
 
         $mail->send();
-        echo 'Message has been sent';
+
+       echo json_encode(['status' => 'success']);
     } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        echo json_encode(['status' => 'error', 'message' => $mail->ErrorInfo]);
     }
-} else {
-    echo 'Invalid request method';
 }
 ?>
