@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Host = 'smtp.hostinger.com'; // Set your SMTP server address here
         $mail->SMTPAuth = true;
         $mail->Username = 'info@ecoglassng.com'; // SMTP username
-        $mail->Password = 'Ecoglass@info2024'; // SMTP password
+        $mail->Password = '********'; // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
